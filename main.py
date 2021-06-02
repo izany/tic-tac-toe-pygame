@@ -169,6 +169,4 @@ def main():
 
 
 if __name__ == "__main__":
-    #played_turns  = 10
-    #print(win((0, 2)))
     main()
