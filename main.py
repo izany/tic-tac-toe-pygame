@@ -3,8 +3,8 @@ import sys
 from math import floor
 
 RAD = 100
-ROWS = 4
-COLUMNS = 4
+ROWS = 3
+COLUMNS = 3
 WIN_CONDITION = 3
 WIDTH = COLUMNS * RAD
 HEIGHT = ROWS * RAD
@@ -158,6 +158,9 @@ def wait(t):
                 sys.exit()
 
 
+
+
+
 def main():
     global PLAYED_TURNS
     scr.fill(WHITE)
@@ -174,12 +177,22 @@ def main():
                     if cord:
                         PLAYED_TURNS += 1
                         update_board(cord)
-                        if win(cord):
+                        if PLAYED_TURNS == ROWS * COLUMNS:
+                            pygame.display.update()
+                            end_scr = font.render("Draw!", True, BLACK)
+                            wait(650)
+                            scr.fill(WHITE)
+                            dest = ((WIDTH - end_scr.get_width())//2, (HEIGHT - end_scr.get_height())//2)
+                            scr.blit(end_scr, dest)
+                            pygame.display.update()
+                            wait(1300)
+                            reset()
+                        elif win(cord):
                             pygame.display.update()
                             if TURN == 1:
-                                end_scr = font.render("O won!", True, BLACK)
+                                end_scr = font.render("O win!", True, BLACK)
                             else:
-                                end_scr = font.render("X won!", True, BLACK)
+                                end_scr = font.render("X win!", True, BLACK)
                             wait(650)
                             scr.fill(WHITE)
                             dest = ((WIDTH - end_scr.get_width())//2, (HEIGHT - end_scr.get_height())//2)
